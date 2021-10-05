@@ -19,8 +19,8 @@ let seedData = async (req, res) => {
 }
 
 let watchesDataGet = async (req, res) => {
-    let watchesList = await WatchesModel.find({});
-    res.status(200).json(watchesList)
+    let watchesList = await WatchesModel.find({})
+    res.status(200).json(watchesList);
 }
 
 let userCheck = async (req, res) => {
