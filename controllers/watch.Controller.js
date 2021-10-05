@@ -17,14 +17,14 @@ let watchesDataGet = async (req, res) => {
     res.status(200).json(watchesList)
 }
 
-let userCheck = async(req,res) => {
+let userCheck = async (req, res) => {
     let email = req.params.email
     let checker = await UserSchema.findOne({ email: email })
     if (checker === null) new usermodel({ email }).save(), res.status(200).json('added');
     if (checker != null) res.status(200).json('already added');
 }
 
-let UserFavlist = async(req, res) => {
+let UserFavlist = async (req, res) => {
     let email = req.params.email;
     let user = await usermodel.findOne({ email })
     res.status(200).json(user);
@@ -34,8 +34,8 @@ let deleteUserItem = async (req, res) => {
     let id = req.params.id;
     let email = req.params.email;
     let userData = await UserModel.findOne({ email });
-    userData.favlist?.map((e,i)=>{
-        if (id == e?._id.toString()) userData.favlist.splice(i,1);
+    userData.favlist?.map((e, i) => {
+        if (id == e?._id.toString()) userData.favlist.splice(i, 1);
     })
     userData.save();
     res.status(200).json(userData);
@@ -59,4 +59,11 @@ let updateUserItem = async (req, res) => {
 
 // }
 
-module.export ={ seedData,updateUserItem, watchesDataGet, deleteUserItem,  UserFavlist, userCheck};
+module.exports = {
+    seedData:seedData,
+    updateUserItem:updateUserItem,
+    watchesDataGet:watchesDataGet,
+    deleteUserItem:deleteUserItem,
+    UserFavlist:UserFavlist,
+    userCheck:userCheck,
+}

@@ -25,7 +25,7 @@ const {
 
 app.get('/', (req, res) => {
     res.status(200).json({
-        "server msg": "the server running 👌"
+        "server msg": "the server running"
     })
 });
 
@@ -38,4 +38,5 @@ app.patch('/deleteUserItem:email/:id', deleteUserItem);
 app.patch('/updateUserItem/:email/:id', updateUserItem);
 
 app.listen(PORT, () => { console.log(`port is running on: ${PORT}`) })
+
 // (v.salvatore7.gs@gmail.com) (moegts@gmail.com)
