@@ -6,10 +6,16 @@ const axios = require('axios');
 let seedData = async (req, res) => {
     let url = "https://watches-world.herokuapp.com/watches-list/";
     let apiData = await axios.get(url);
-    console.log(apiData);
-    // let cleanedData = await apiData
-    // let a = app.get("https://watches-world.herokuapp.com/watches-list/")
-
+    let cleanedData = await apiData.data.map(e => {
+        console.log(e);
+        return new WatchesModel({
+            title: e.title,
+            description: e.description,
+            toUSD: e.toUSD,
+            image: e.image
+        })
+    })
+    await cleanedData.map(e=>{ e.save(),console.log("seeded")})
 }
 
 let watchesDataGet = async (req, res) => {
@@ -55,15 +61,11 @@ let updateUserItem = async (req, res) => {
     res.status(200).json(userData);
 }
 
-// let seedData = async =(req,res)=>{
-
-// }
-
 module.exports = {
-    seedData:seedData,
-    updateUserItem:updateUserItem,
-    watchesDataGet:watchesDataGet,
-    deleteUserItem:deleteUserItem,
-    UserFavlist:UserFavlist,
-    userCheck:userCheck,
+    seedData: seedData,
+    updateUserItem: updateUserItem,
+    watchesDataGet: watchesDataGet,
+    deleteUserItem: deleteUserItem,
+    UserFavlist: UserFavlist,
+    userCheck: userCheck,
 }

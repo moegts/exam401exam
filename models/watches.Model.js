@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
     favlist: Array,
   });
 
-const WatchesModel = mongoose.model('user', UserSchema);
-const UserModel = mongoose.model('Watche', WatchesSchema);
+const WatchesModel = mongoose.model('user', WatchesSchema);
+const UserModel = mongoose.model('Watche', UserSchema);
 module.exports = {WatchesModel, UserModel}
 
