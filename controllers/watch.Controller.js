@@ -7,7 +7,6 @@ let seedData = async (req, res) => {
     let url = "https://watches-world.herokuapp.com/watches-list/";
     let apiData = await axios.get(url);
     let cleanedData = await apiData.data.map(e => {
-        console.log(e);
         return new WatchesModel({
             title: e.title,
             description: e.description,
@@ -16,6 +15,7 @@ let seedData = async (req, res) => {
         })
     })
     await cleanedData.map(e=>{ e.save(),console.log("seeded")})
+    res.status(200).json(cleanedData)
 }
 
 let watchesDataGet = async (req, res) => {
